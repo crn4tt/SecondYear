@@ -20,8 +20,8 @@ public:
 
     void AppendElem(T elem) {
         _array[_count++] = elem;
-        if (elem < _min) _min = elem;
-        if (elem > _max) _max = elem;
+        _min = (elem < _min) ? elem : _min;
+        _max = (elem > _max) ? elem : _max;
     }
 
     T GetMax() const {
@@ -32,17 +32,19 @@ public:
         return _min;
     }
 
-    bool IsContains(T elem) const {
-        const T* end = _array + _count;
-        const T* ptr = _array;
+    bool IsContains(T __restrict* elem) const {
+        const T __restrict* end = _array + _count;
+        const T __restrict* ptr = _array;
 
 
-        while (ptr + 8 <= end) {
+        while (ptr + 16 <= end) {
             if (*ptr == elem || *(ptr + 1) == elem || *(ptr + 2) == elem || *(ptr + 3) == elem ||
-                *(ptr + 4) == elem || *(ptr + 5) == elem || *(ptr + 6) == elem || *(ptr + 7) == elem) {
+                *(ptr + 4) == elem || *(ptr + 5) == elem || *(ptr + 6) == elem || *(ptr + 7) == elem ||
+                *(ptr + 8) == elem || *(ptr + 9) == elem || *(ptr + 10) == elem || *(ptr + 11) == elem ||
+                *(ptr + 12) == elem || *(ptr + 13) == elem || *(ptr + 14) == elem || *(ptr + 15) == elem) {
                 return true;
             }
-            ptr += 8;
+            ptr += 16;
         }
 
         while (ptr < end) {
