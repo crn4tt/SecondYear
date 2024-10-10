@@ -15,20 +15,18 @@ FetchContent_MakeAvailable(googletest)
 add_executable(main main.cpp tests.cpp)
 
 target_compile_options(main PRIVATE
-    -Ofast               
-    -march=native        
-    -funroll-loops       
-    -flto                
-    -fomit-frame-pointer 
-    -fno-stack-protector 
-    -fno-exceptions      
-    -fno-rtti            
-    -DNDEBUG             
-    -ffast-math          
-    -mavx2               
-    -funroll-loops       
-    -fprofile-generate   
-    -fprofile-use        
+  -Ofast               
+  -march=native        
+  -funroll-loops       
+  -flto                
+  -fomit-frame-pointer 
+  -fno-stack-protector 
+  -fno-exceptions      
+  -fno-rtti            
+  -DNDEBUG             
+  -ffast-math          
+  -mavx2               
+  -funroll-loops            
 )
 
 target_link_libraries(main gtest gmock)
