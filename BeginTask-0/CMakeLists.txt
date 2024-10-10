@@ -18,7 +18,7 @@ target_compile_options(main PRIVATE
   -Ofast               
   -march=native        
   -funroll-loops       
-  -flto                
+  # -flto                
   -fomit-frame-pointer 
   -fno-stack-protector 
   -fno-exceptions      
@@ -26,7 +26,9 @@ target_compile_options(main PRIVATE
   -DNDEBUG             
   -ffast-math          
   -mavx2               
-  -funroll-loops            
+  -funroll-loops       
+  -fprofile-generate   
+  -fprofile-use    
 )
 
-target_link_libraries(main gtest gmock)
+target_link_libraries(main gtest gmock gcov)
