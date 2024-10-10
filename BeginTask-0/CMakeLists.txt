@@ -15,12 +15,20 @@ FetchContent_MakeAvailable(googletest)
 add_executable(main main.cpp tests.cpp)
 
 target_compile_options(main PRIVATE
-    -ftree-vectorize
-    -O3                
-    -march=native      
-    -funroll-loops     
-    -fprefetch-loop-arrays  
-    -flto              
+    -Ofast               
+    -march=native        
+    -funroll-loops       
+    -flto                
+    -fomit-frame-pointer 
+    -fno-stack-protector 
+    -fno-exceptions      
+    -fno-rtti            
+    -DNDEBUG             
+    -ffast-math          
+    -mavx2               
+    -funroll-loops       
+    -fprofile-generate   
+    -fprofile-use        
 )
 
 target_link_libraries(main gtest gmock)
