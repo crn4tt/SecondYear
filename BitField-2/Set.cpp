@@ -1,56 +1,48 @@
-#include "Set.h"
+#pragma once
+#include <iostream>
+#include <vector>
+#include <stdint.h>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+
+using namespace std;
 
 
-Set::Set(size_t mp) : _bitField(10) {
+class BitField {
+private:
+    size_t _sizeMem;
+    size_t _sizeBit;
+    uint16_t* _mem;
+    
+    size_t GetMemIndex(size_t n)const;
+    uint16_t GetMask(size_t n) const;
 
-}
-Set::Set(const Set &s) : _bitField(10){
+public:
+    BitField(size_t sizeBit);
+    ~BitField();
+    BitField(const BitField& tmp);
 
-} 
-Set::Set(const BitField &bf) : _bitField(10){
+    void SetBit(size_t n);
+    void ClrBit(size_t n);
+    uint8_t GetBit(size_t n) const;
+    size_t GetLength() const;
+    
+    bool operator==(const BitField& tmp) const;
+    BitField& operator=(const BitField& tmp);
+    BitField operator^(const BitField& tmp);
+    BitField operator&(const BitField& tmp);
+    BitField operator|(const BitField& tmp);
+    BitField operator~();
+    
+    BitField& Universe();
 
-}
+    friend istream& operator>>(istream& in, BitField& x);
+    friend ostream& operator<<(ostream& os, const BitField& x);
 
-size_t Set::GetMaxPower() const{
-    return 0;
-}    
-void Set::InsElem(const uint64_t Elem){
-
-}
-void Set::DelElem(const uint64_t Elem){
-
-}
-bool Set::IsMember(const uint64_t Elem) const{
-    return 0;
-}
-
-
-bool Set::operator== (const Set &s) const{
-    return 0;
-}
-bool Set::operator!= (const Set &s) const{
-    return 0;
-}
-Set& Set::operator=(const Set &s){
-    return *this;
-}
-Set Set::operator+ (const uint64_t Elem){
-    return *this;
-}
-                                  
-Set Set::operator- (const uint64_t Elem){
-    return *this;
-}
-                                   
-Set Set::operator+ (const Set &s){
-    return *this;
-}
-Set Set::operator* (const Set &s){
-    return *this;
-}
-Set Set::operator~ (){
-    return *this;
-}
-std::vector<uint64_t> Set::GetPrimary(){
-    return std::vector<uint64_t>();
-}
+};
