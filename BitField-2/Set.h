@@ -1,34 +1,48 @@
 #pragma once
+#include <iostream>
 #include <vector>
-#include "BitField.h"
+#include <stdint.h>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
 
-class Set
-{
+using namespace std;
+
+
+class BitField {
 private:
-  size_t _maxPower;       // максимальная мощность множества
-  BitField _bitField; // битовое поле для хранения характеристического вектора
-public:
-  Set(size_t mp);
-  Set(const Set &s);       // конструктор копирования
-  Set(const BitField &bf); // конструктор преобразования типа
-  operator BitField(){ // преобразование типа к битовому полю
+    size_t _sizeMem;
+    size_t _sizeBit;
+    uint16_t* _mem;
+    
+    size_t GetMemIndex(size_t n)const;
+    uint16_t GetMask(size_t n) const;
 
-  }
-  // доступ к битам
-  size_t GetMaxPower(void) const;     // максимальная мощность множества
-  void InsElem(const uint64_t Elem);       // включить элемент в множество
-  void DelElem(const uint64_t Elem);       // удалить элемент из множества
-  bool IsMember(const uint64_t Elem) const; // проверить наличие элемента в множестве
-  // теоретико-множественные операции
-  bool operator== (const Set &s) const; // сравнение
-  bool operator!= (const Set &s) const; // сравнение
-  Set& operator=(const Set &s);  // присваивание
-  Set operator+ (const uint64_t Elem); // объединение с элементом
-                                   // элемент должен быть из того же универса
-  Set operator- (const uint64_t Elem); // разность с элементом
-                                   // элемент должен быть из того же универса
-  Set operator+ (const Set &s);  // объединение
-  Set operator* (const Set &s);  // пересечение
-  Set operator~ ();           // дополнение
-  std::vector<uint64_t> GetPrimary(); // Выдать простые числа множества
+public:
+    BitField(size_t sizeBit);
+    ~BitField();
+    BitField(const BitField& tmp);
+
+    void SetBit(size_t n);
+    void ClrBit(size_t n);
+    uint8_t GetBit(size_t n) const;
+    size_t GetLength() const;
+    
+    bool operator==(const BitField& tmp) const;
+    BitField& operator=(const BitField& tmp);
+    BitField operator^(const BitField& tmp);
+    BitField operator&(const BitField& tmp);
+    BitField operator|(const BitField& tmp);
+    BitField operator~();
+    
+    BitField& Universe();
+
+    friend istream& operator>>(istream& in, BitField& x);
+    friend ostream& operator<<(ostream& os, const BitField& x);
+
 };
