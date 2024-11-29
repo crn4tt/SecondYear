@@ -1,48 +1,34 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <stdint.h>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string>
+#include "BitField.h"
 
-using namespace std;
-
-
-class BitField {
+class Set
+{
 private:
-    size_t _sizeMem;
-    size_t _sizeBit;
-    uint16_t* _mem;
-    
-    size_t GetMemIndex(size_t n)const;
-    uint16_t GetMask(size_t n) const;
+    BitField _bitfield;
+    size_t _maxPower;
 
 public:
-    BitField(size_t sizeBit);
-    ~BitField();
-    BitField(const BitField& tmp);
+    Set(size_t maxPower);
+    Set(const Set &tmp);
+    Set(const BitField &tmp);
+    operator BitField();
 
-    void SetBit(size_t n);
-    void ClrBit(size_t n);
-    uint8_t GetBit(size_t n) const;
-    size_t GetLength() const;
-    
-    bool operator==(const BitField& tmp) const;
-    BitField& operator=(const BitField& tmp);
-    BitField operator^(const BitField& tmp);
-    BitField operator&(const BitField& tmp);
-    BitField operator|(const BitField& tmp);
-    BitField operator~();
-    
-    BitField& Universe();
+    void InsElem(uint64_t elem);
+    void DelElem(uint64_t elem);
+    bool IsMember(uint64_t elem);
+    size_t GetMaxPow() const;
 
-    friend istream& operator>>(istream& in, BitField& x);
-    friend ostream& operator<<(ostream& os, const BitField& x);
+    bool operator==(const Set &tmp) const;
+    Set &operator=(const Set &tmp);
+    bool operator!=(const Set &tmp) const;
+    Set operator+(const Set &tmp);
+    void operator+(uint64_t elem);
+    void operator-(uint64_t elem);
+    Set operator*(const Set &elem);
+    Set operator~();
 
+    vector<uint64_t> GetPrimary() const;
+
+    friend istream &operator>>(istream &is, Set &tmp);
+    friend ostream &operator<<(ostream &is, const Set &tmp);
 };
