@@ -22,7 +22,7 @@ BitField::BitField(const BitField& tmp) {
 }
 
 size_t BitField::GetMemIndex(size_t n) const{
-    if (n < _sizeBit)    return n / (16 * sizeof(uint16_t));
+    if (n < _sizeBit) return n / (16 * sizeof(uint16_t));
     throw "Bit out of range";
 }
 
