@@ -3,7 +3,7 @@
 
 BitField::BitField(size_t sizeBit) {
     _sizeBit = sizeBit;
-    _sizeMem = (_sizeBit / (16 * (sizeof(uint16_t)))) + (sizeBit % (16 * sizeof(uint16_t)) != 0);
+    _sizeMem = (_sizeBit / (8 * (sizeof(uint16_t)))) + (sizeBit % (8 * sizeof(uint16_t)) != 0);
     _mem = new uint16_t[_sizeMem];
     for (size_t i = 0; i < _sizeMem; ++i)
         _mem[i] = 0;
@@ -22,7 +22,7 @@ BitField::BitField(const BitField& tmp) {
 }
 
 size_t BitField::GetMemIndex(size_t n) const{
-    if (n < _sizeBit) return n / (16 * sizeof(uint16_t));
+    if (n < _sizeBit) return n / (8 * sizeof(uint16_t));
     throw "Bit out of range";
 }
 
@@ -132,7 +132,7 @@ istream& operator>>(istream& in, BitField& x) {
     size_t sizeBit;
     in >> sizeBit;
     x._sizeBit = sizeBit;
-    x._sizeMem = (sizeBit / (16 * (sizeof(uint16_t)))) + (sizeBit % (16 * sizeof(uint16_t)) != 0);
+    x._sizeMem = (sizeBit / (8 * (sizeof(uint16_t)))) + (sizeBit % (8 * sizeof(uint16_t)) != 0);
     x._mem = new uint16_t[x._sizeMem];
     uint64_t tmp;
     while (true) {
