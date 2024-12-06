@@ -58,25 +58,6 @@ Set Set::operator+(const Set& tmp) {
     return result;
 }
 
-vector<uint64_t> Set::GetPrimary() const {
-    vector <uint64_t> res;
-    unordered_set<uint64_t> used;
-    res.push_back(1);
-    for (uint64_t i = 2; i < _maxPower + 1; i++){
-    
-        if (used.find(i) != used.end()) continue;
-    
-        else{
-            res.push_back(i);
-            for (uint64_t j = i + 1; j < _maxPower + 1; j++)
-                if (j % i == 0) used.insert(j);
-            
-       }
-    }
-    return res;
-}
-
-
 void Set::operator+(uint64_t elem) {
     InsElem(elem);
 }
