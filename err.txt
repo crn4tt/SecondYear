@@ -1,0 +1,28 @@
+[main] Building folder: /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/build all
+[build] Starting build
+[proc] Executing command: /usr/bin/cmake --build "/home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/build" --config Debug --target all -j 6 --
+[build] Consolidate compiler generated dependencies of target main
+[build] [ 50%] Building CXX object CMakeFiles/main.dir/main.cpp.o
+[build] In file included from /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/main.cpp:1:
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Matrix.h: In instantiation of ‘Matrix<T> Matrix<T>::operator+(const Matrix<T>&) [with T = int]’:
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/main.cpp:17:30:   required from here
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Matrix.h:31:48: error: cannot convert ‘const Matrix<int>’ to ‘const Vector<int>&’
+[build]    31 |         return Vector<Vector<int>> :: operator+(mt);
+[build]       |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+[build] In file included from /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Matrix.h:2,
+[build]                  from /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/main.cpp:1:
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Vector.h:78:31: note:   initializing argument 1 of ‘Vector<T> Vector<T>::operator+(const T&) const [with T = Vector<int>]’
+[build]    78 |     Vector operator+(const T& tmp) const{
+[build]       |                      ~~~~~~~~~^~~
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Vector.h: In instantiation of ‘Vector<T> Vector<T>::operator+(const T&) const [with T = Vector<int>]’:
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Matrix.h:31:48:   required from ‘Matrix<T> Matrix<T>::operator+(const Matrix<T>&) [with T = int]’
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/main.cpp:17:30:   required from here
+[build] /home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/Vector.h:81:20: error: no match for ‘operator+=’ (operand types are ‘Vector<int>’ and ‘const Vector<int>’)
+[build]    81 |             ans[i] += tmp;
+[build]       |             ~~~~~~~^~~~~~
+[build] gmake[2]: *** [CMakeFiles/main.dir/build.make:76: CMakeFiles/main.dir/main.cpp.o] Ошибка 1
+[build] gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/main.dir/all] Ошибка 2
+[build] gmake: *** [Makefile:91: all] Ошибка 2
+[proc] The command: /usr/bin/cmake --build "/home/s23380349@unn.global/Рабочий стол/Egashin/Matrix/build" --config Debug --target all -j 6 -- exited with code: 2
+[driver] Build completed: 00:00:00.600
+[build] Build finished with exit code 2
