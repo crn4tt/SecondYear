@@ -6,9 +6,9 @@ Set::operator BitField() {
 
 Set::Set(const BitField& tmp) : _maxPower(tmp.GetLength()), _bitfield(tmp) {}
 
-Set::Set(const Set& tmp):_maxPower(tmp.GetMaxPow()), _bitfield(tmp._bitfield) {}
+Set::Set(const Set& tmp): _maxPower(tmp.GetMaxPow()), _bitfield(tmp._bitfield) {}
 
-Set::Set(const size_t maxPower) :_bitfield(maxPower) { _maxPower = maxPower; }
+Set::Set(const size_t maxPower) : _maxPower(maxPower), _bitfield(maxPower) {}
 
 void Set::InsElem(uint64_t elem) {
     if (elem < _maxPower)
