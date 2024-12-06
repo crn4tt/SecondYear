@@ -78,15 +78,3 @@ Set Set::operator~() {
     return result;
 }
 
-
-ostream& operator<<(ostream& os, const Set& tmp) {
-    os << tmp._bitfield;
-    return os << endl;
-};
-
-istream& operator>>(istream& is, Set& tmp) {
-    is >> tmp._maxPower;
-    is >> tmp._bitfield;
-    return is;
-}
-
