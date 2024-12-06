@@ -10,10 +10,7 @@ BitField::BitField(size_t sizeBit) {
 }
 
 BitField::~BitField() {
-    _sizeMem = 0;
-    _sizeBit = 0;
     delete[] _mem;
-    _mem = nullptr;
 }
 
 BitField::BitField(const BitField& tmp) {
