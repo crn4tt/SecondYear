@@ -1,9 +1,18 @@
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
+#include "StringField.h"
+#include <iostream>
 
+int main() {
+    StringField sf(16);
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
+    sf.FromString("GigaChad");
 
-    return RUN_ALL_TESTS();
+    std::cout << "StringField: " << sf << std::endl;
+
+    sf.InsertChar(1, 'a');
+    std::cout << "After modification: " << sf.ToString() << std::endl;
+
+    sf.RemoveChar(7);
+    std::cout << "After removal: " << sf.ToString() << std::endl;
+
+    return 0;
 }

@@ -42,7 +42,7 @@ void BitField::ClrBit(size_t n) {
 }
 
 uint8_t BitField::GetBit(size_t n) const{
-    if ((n > _sizeBit) || (n < 0)) throw "N out of range";
+    if (n > _sizeBit) throw "N out of range";
     uint16_t tmp = _mem[GetMemIndex(n)];
     tmp &= GetMask(n);
     return (tmp != 0 ? 1 : 0);
