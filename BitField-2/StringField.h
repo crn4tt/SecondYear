@@ -1,19 +1,21 @@
 #pragma once
 #include "BitField.h"
 #include <string>
+#include <functional>
+#include <unordered_map>
 
-class StringField : public BitField {
+class HashedStringField : public BitField {
+private:
+    std::unordered_map<size_t, std::string> _hashToString;
+    std::hash<std::string> _hasher;
+
 public:
-    StringField(size_t maxLength);
-    StringField(const StringField& other);
+    HashedStringField(size_t bitSize);
 
-    void InsertChar(size_t index, char c);       
-    void RemoveChar(size_t index);               
-    char GetChar(size_t index) const;            
-    std::string ToString() const;                
-    void FromString(const std::string& str);     
+    void InsertString(const std::string& str);
+    void RemoveString(const std::string& str);
+    bool ContainsString(const std::string& str) const;
+    std::string GetString(size_t hash) const;
 
-    StringField& operator=(const StringField& other);
-    friend std::ostream& operator<<(std::ostream& os, const StringField& sf);
-    friend std::istream& operator>>(std::istream& is, StringField& sf);
+    friend std::ostream& operator<<(std::ostream& os, const HashedStringField& hsf);
 };

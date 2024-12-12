@@ -2,17 +2,18 @@
 #include <iostream>
 
 int main() {
-    StringField sf(16);
+    HashedStringField hsf(64);
 
-    sf.FromString("GigaChad");
+    hsf.InsertString("Hello");
+    hsf.InsertString("World");
 
-    std::cout << "StringField: " << sf << std::endl;
+    std::cout << "Contains 'Hello': " << hsf.ContainsString("Hello") << std::endl;
+    std::cout << "Contains 'Test': " << hsf.ContainsString("Test") << std::endl;
 
-    sf.InsertChar(1, 'a');
-    std::cout << "After modification: " << sf.ToString() << std::endl;
+    std::cout << "All strings: " << hsf << std::endl;
 
-    sf.RemoveChar(7);
-    std::cout << "After removal: " << sf.ToString() << std::endl;
+    hsf.RemoveString("World");
+    std::cout << "After removal: " << hsf << std::endl;
 
     return 0;
 }
